@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EleView</string>
+    <string name="listview_loading">loading...</string>
+</resources>
