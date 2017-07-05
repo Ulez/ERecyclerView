@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 
-public class MyRecyView extends RecyclerView implements State {
+public class ERecyclerView extends RecyclerView {
 
     private static final String TAG = "MyRecyView";
     private SimpleAdapterWrapper wrapper;
@@ -48,17 +48,17 @@ public class MyRecyView extends RecyclerView implements State {
         STAGGERED_GRID
     }
 
-    public MyRecyView(Context context) {
+    public ERecyclerView(Context context) {
         super(context);
         init();
     }
 
-    public MyRecyView(Context context, @Nullable AttributeSet attrs) {
+    public ERecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public MyRecyView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public ERecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }

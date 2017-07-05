@@ -13,13 +13,13 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> listData;
     private int time = 0;
     private SimpleAdapter mAdapter;
-    private MyRecyView mRecyclerView;
+    private ERecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRecyclerView = (MyRecyView) findViewById(R.id.recyView);
+        mRecyclerView = (ERecyclerView) findViewById(R.id.recyView);
         handler = new Handler();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 return R.layout.item_main;
             }
         };
-        mRecyclerView.setFreshListener(new MyRecyView.FreshListener() {
+        mRecyclerView.setFreshListener(new ERecyclerView.FreshListener() {
             @Override
             public void onRefresh() {
                 handler.postDelayed(new Runnable() {

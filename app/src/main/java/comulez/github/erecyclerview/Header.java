@@ -7,6 +7,10 @@ package comulez.github.erecyclerview;
 
 
 public interface Header {
+    int STATE_NORMAL = 0;
+    int STATE_READY = 1;
+    int STATE_REFRESHING = 2;
+
     void setVisibleHeight(int height);
 
     int getVisibleHeight();

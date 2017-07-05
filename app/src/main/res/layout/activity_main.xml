@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context="comulez.github.erecyclerview.MainActivity">
 
-    <comulez.github.erecyclerview.MyRecyView
+    <comulez.github.erecyclerview.ERecyclerView
         android:id="@+id/recyView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></comulez.github.erecyclerview.MyRecyView>
+        android:layout_height="match_parent"></comulez.github.erecyclerview.ERecyclerView>
 </RelativeLayout>

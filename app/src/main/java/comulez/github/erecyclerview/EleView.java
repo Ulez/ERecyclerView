@@ -81,7 +81,7 @@ public class EleView extends View {
 
 //    HashMap<Bitmap, Boolean> sss = new HashMap<>();
 
-    ArrayList<ViewS> foods = new ArrayList();
+    ArrayList<BitmapBean> foods = new ArrayList();
 
     private void init(Context context) {
         paint = new Paint();
@@ -90,11 +90,11 @@ public class EleView extends View {
         iL = BitmapFactory.decodeResource(getResources(), R.drawable.a3p);
         iR = BitmapFactory.decodeResource(getResources(), R.drawable.a3q);
 
-        foods.add(new ViewS(BitmapFactory.decodeResource(getResources(), R.drawable.a3j), false));
-        foods.add(new ViewS(BitmapFactory.decodeResource(getResources(), R.drawable.a3l), false));
-        foods.add(new ViewS(BitmapFactory.decodeResource(getResources(), R.drawable.a3m), false));
-        foods.add(new ViewS(BitmapFactory.decodeResource(getResources(), R.drawable.a3n), false));
-        foods.add(new ViewS(BitmapFactory.decodeResource(getResources(), R.drawable.a3o), false));
+        foods.add(new BitmapBean(BitmapFactory.decodeResource(getResources(), R.drawable.a3j), false));
+        foods.add(new BitmapBean(BitmapFactory.decodeResource(getResources(), R.drawable.a3l), false));
+        foods.add(new BitmapBean(BitmapFactory.decodeResource(getResources(), R.drawable.a3m), false));
+        foods.add(new BitmapBean(BitmapFactory.decodeResource(getResources(), R.drawable.a3n), false));
+        foods.add(new BitmapBean(BitmapFactory.decodeResource(getResources(), R.drawable.a3o), false));
 
 
         eWidth = ele.getWidth();

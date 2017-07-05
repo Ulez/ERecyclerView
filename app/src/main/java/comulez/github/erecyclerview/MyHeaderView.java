@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
  */
 
 
-public class MyHeaderView extends LinearLayout implements Header,State{
+public class MyHeaderView extends LinearLayout implements Header{
     private LinearLayout mContainer;
     private EleView eleView;
     private int contentHeight;//内容原始高度；

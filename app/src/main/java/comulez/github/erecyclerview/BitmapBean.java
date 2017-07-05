@@ -8,11 +8,11 @@ import android.graphics.Bitmap;
  */
 
 
-public class ViewS {
+public class BitmapBean {
     public Bitmap bitmap;
     public boolean showing = false;
 
-    public ViewS(Bitmap bitmap, boolean showing) {
+    public BitmapBean(Bitmap bitmap, boolean showing) {
         this.bitmap = bitmap;
         this.showing = showing;
     }
