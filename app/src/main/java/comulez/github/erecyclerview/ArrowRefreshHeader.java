@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,7 +88,7 @@ public class ArrowRefreshHeader extends LinearLayout implements Header {
         mHeaderTimeView = (TextView) findViewById(R.id.last_refresh_time);
         measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mMeasuredHeight = getMeasuredHeight();
-        Log.e(TAG1, "init,mMeasuredHeight=" + mMeasuredHeight);
+//        Log.e(TAG1, "init,mMeasuredHeight=" + mMeasuredHeight);
     }
 
     public void setProgressStyle(int style) {
@@ -108,7 +107,7 @@ public class ArrowRefreshHeader extends LinearLayout implements Header {
     }
 
     public void setState(int state) {
-        Log.e(TAG1, "setState=" + state + ",,mState=" + mState);
+//        Log.e(TAG1, "setState=" + state + ",,mState=" + mState);
         if (state == mState) return;
 
         if (state == STATE_REFRESHING) {    // 显示进度
@@ -185,7 +184,7 @@ public class ArrowRefreshHeader extends LinearLayout implements Header {
         if (getVisibleHeight() > 0 || delta > 0) {
             setVisibleHeight((int) delta + getVisibleHeight());
             if (mState <= STATE_READY) { // 未处于刷新状态，更新箭头
-                Log.e(TAG1, "getVisibleHeight=" + getVisibleHeight() + ",mMeasuredHeight=" + mMeasuredHeight);
+//                Log.e(TAG1, "getVisibleHeight=" + getVisibleHeight() + ",mMeasuredHeight=" + mMeasuredHeight);
                 if (getVisibleHeight() > mMeasuredHeight) {
                     setState(STATE_READY);
                 } else {

@@ -40,7 +40,6 @@ public class ERecyclerView extends RecyclerView {
 
     public void loadAllComplete(boolean noMore) {
         this.noMore = noMore;
-        Log.e(TAG, "NoMore");
         loadMoreComplete();
     }
 
@@ -170,7 +169,6 @@ public class ERecyclerView extends RecyclerView {
     }
 
     public void loadMoreComplete() {
-        Log.e(TAG, "loadMoreComplete");
         isloading = false;
         wrapper.notifyItemRangeInserted(size + 1, getLayoutManager().getItemCount() - size);
     }
@@ -203,7 +201,7 @@ public class ERecyclerView extends RecyclerView {
     public void refreshComplete() {
         noMore = false;
         isloading = false;
-        Log.e("lcy", "refreshComplete");
+        Log.d("lcy", "refreshComplete");
         headerView.refreshComplete();
         scrollToPosition(0);
         notifyDataSetChanged();

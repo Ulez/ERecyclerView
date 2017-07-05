@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = kk; i < kk + 20; i++) {
                                 listData.add("time=" + time + "--Item=" + i);
                             }
-                            Log.e(TAG, "hasMore");
                             mRecyclerView.loadMoreComplete();
                         } else {
                             for (int i = kk; i < kk + 15; i++) {

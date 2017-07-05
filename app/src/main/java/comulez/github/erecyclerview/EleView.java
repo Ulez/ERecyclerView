@@ -172,16 +172,16 @@ public class EleView extends View {
             }
         }
         canvas.save();
-        int sfdfs = (int) (currentOffset * 5);
+        int offsetC = (int) (currentOffset * 5);
         canvas.rotate(currentDegree, (float) (dstE.right - iWidth * scale / 4), (float) (dstE.top + scale * iWidth));
-        canvas.drawBitmap(iR, null, new Rect(dstI2.left, dstI2.top - sfdfs, dstI2.right, dstI2.bottom + sfdfs), paint);
+        canvas.drawBitmap(iR, null, new Rect(dstI2.left, dstI2.top - offsetC, dstI2.right, dstI2.bottom + offsetC), paint);
         canvas.restore();
 
         canvas.save();
         canvas.rotate(-currentDegree, (float) (dstE.left + iWidth * scale / 4), (float) (dstE.top + scale * iWidth));
-        canvas.drawBitmap(iL, null, new Rect(dstI.left, dstI.top - sfdfs, dstI.right, dstI.bottom + sfdfs), paint);
+        canvas.drawBitmap(iL, null, new Rect(dstI.left, dstI.top - offsetC, dstI.right, dstI.bottom + offsetC), paint);
         canvas.restore();
-        canvas.drawBitmap(ele, null, new Rect(dstE.left, dstE.top - sfdfs, dstE.right, dstE.bottom + sfdfs), paint);
+        canvas.drawBitmap(ele, null, new Rect(dstE.left, dstE.top - offsetC, dstE.right, dstE.bottom + offsetC), paint);
     }
 
     // 开启路径动画
