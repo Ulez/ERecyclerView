@@ -3,6 +3,7 @@ package comulez.github.erecyclerview;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.LinearLayout;
  */
 
 
-public class MyHeaderView extends LinearLayout implements Header{
+public class MyHeaderView extends LinearLayout implements Header {
     private LinearLayout mContainer;
     private EleView eleView;
     private int contentHeight;//内容原始高度；
@@ -73,7 +74,7 @@ public class MyHeaderView extends LinearLayout implements Header{
         smoothScrollTo(contentHeight22);
     }
 
-    public void smoothScrollTo(int destHeight) {
+    private void smoothScrollTo(int destHeight) {
 
         if (destHeight == 0)
             eleView.stopAni();
@@ -144,6 +145,25 @@ public class MyHeaderView extends LinearLayout implements Header{
             }
             return;
         }
+    }
+
+    @Override
+    public void refreshComplete() {
+        smoothScrollTo0();
+    }
+
+    @Override
+    public boolean releaseAction() {
+        boolean isOnRefresh = false;
+        if (getVisibleHeight() >= getContentHeight22()) {
+            Log.d("lcy", "release to Fresh");
+            smoothScrollToContent();
+            isOnRefresh=true;
+        } else {
+            Log.d("lcy", "release to do nothing");
+            smoothScrollTo0();
+        }
+        return isOnRefresh;
     }
 
     public void smoothScrollTo0() {

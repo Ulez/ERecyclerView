@@ -24,9 +24,9 @@ import java.util.List;
 
 public class ERecyclerView extends RecyclerView {
 
-    private static final String TAG = "MyRecyView";
+    private static final String TAG = "ERecyclerView";
     private SimpleAdapterWrapper wrapper;
-    private MyHeaderView headerView;
+    private Header headerView;
     private View footerView;
     private float mLastY = -1;
     //    private int contentHeight;
@@ -38,8 +38,10 @@ public class ERecyclerView extends RecyclerView {
     private boolean noMore = false;
     private TextView textView;
 
-    public void setNoMore(boolean noMore) {
+    public void loadAllComplete(boolean noMore) {
         this.noMore = noMore;
+        Log.e(TAG, "NoMore");
+        loadMoreComplete();
     }
 
     enum LAYOUT_MANAGER_TYPE {
@@ -69,11 +71,15 @@ public class ERecyclerView extends RecyclerView {
         textView = (TextView) footerView.findViewById(R.id.tv_hint);
     }
 
+    public void setRefreshHeader(Header header) {
+        this.headerView = header;
+    }
+
     @Override
     public void setAdapter(Adapter adapter) {
         if (adapter instanceof SimpleAdapter) {
             wrapper = new SimpleAdapterWrapper((SimpleAdapter) adapter);
-            wrapper.setHeaderView(headerView);
+            wrapper.setHeaderView((View) headerView);
             wrapper.setFooterView(footerView);
             super.setAdapter(wrapper);
         } else
@@ -140,7 +146,7 @@ public class ERecyclerView extends RecyclerView {
         if (mLastY == -1) {
             mLastY = e.getRawY();
         }
-        if (isOnTop()) {
+        if (isOnTop() && !isloading) {
             switch (e.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     mLastY = e.getRawY();
@@ -151,28 +157,20 @@ public class ERecyclerView extends RecyclerView {
                     headerView.onMove(delta / 1.5f);
                     break;
                 default:
-                    if (headerView.getVisibleHeight() >= headerView.getContentHeight22()) {
-                        Log.d("lcy", "release to Fresh");
-                        headerView.smoothScrollToContent();
-                        if (freshListener != null && !isloading) {
-                            noMore = false;
-                            isloading = true;
-                            freshListener.onRefresh();
-                        }
-                    } else {
-                        Log.d("lcy", "release to do nothing");
-                        headerView.smoothScrollTo0();
+                    if (headerView.releaseAction() && freshListener != null && !isloading) {
+                        noMore = false;
+                        isloading = true;
+                        freshListener.onRefresh();
                     }
                     mLastY = -1;
                     break;
             }
-        } else {
-            headerView.setVisibleHeight(0);
         }
         return super.onTouchEvent(e);
     }
 
     public void loadMoreComplete() {
+        Log.e(TAG, "loadMoreComplete");
         isloading = false;
         wrapper.notifyItemRangeInserted(size + 1, getLayoutManager().getItemCount() - size);
     }
@@ -205,9 +203,8 @@ public class ERecyclerView extends RecyclerView {
     public void refreshComplete() {
         noMore = false;
         isloading = false;
-        Log.d("lcy", "refreshComplete");
-        headerView.smoothScrollTo0();
-//        headerView.reset();
+        Log.e("lcy", "refreshComplete");
+        headerView.refreshComplete();
         scrollToPosition(0);
         notifyDataSetChanged();
     }
@@ -266,7 +263,7 @@ public class ERecyclerView extends RecyclerView {
                 return;
             } else if (type == FOOTER) {
                 if (noMore)
-                    textView.setText("已经加载全部");
+                    textView.setText(getContext().getString(R.string.listview_loaded_all));
                 else
                     textView.setText(getContext().getString(R.string.listview_loading));
                 return;

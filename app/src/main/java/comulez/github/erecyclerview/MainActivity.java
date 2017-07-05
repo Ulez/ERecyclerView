@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private int time = 0;
     private SimpleAdapter mAdapter;
     private ERecyclerView mRecyclerView;
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        // mRecyclerView.setRefreshHeader(new ArrowRefreshHeader(this));
         listData = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             listData.add("time=" + time + "--Item=" + i);
@@ -67,13 +70,14 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = kk; i < kk + 20; i++) {
                                 listData.add("time=" + time + "--Item=" + i);
                             }
+                            Log.e(TAG, "hasMore");
+                            mRecyclerView.loadMoreComplete();
                         } else {
                             for (int i = kk; i < kk + 15; i++) {
                                 listData.add("time=" + time + "--Item=" + i);
                             }
-                            mRecyclerView.setNoMore(true);
+                            mRecyclerView.loadAllComplete(true);
                         }
-                        mRecyclerView.loadMoreComplete();
                     }
                 }, 1000);
             }

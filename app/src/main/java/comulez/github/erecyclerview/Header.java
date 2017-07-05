@@ -10,6 +10,8 @@ public interface Header {
     int STATE_NORMAL = 0;
     int STATE_READY = 1;
     int STATE_REFRESHING = 2;
+    int STATE_DONE = 3;
+
 
     void setVisibleHeight(int height);
 
@@ -18,4 +20,8 @@ public interface Header {
     void setState(int state);
 
     void onMove(float delta);
+
+    void refreshComplete();
+
+    boolean releaseAction();
 }
